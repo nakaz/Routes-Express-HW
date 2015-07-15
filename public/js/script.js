@@ -1,4 +1,4 @@
-console.log('this is the calculator');
+console.log('THE CALCULATOR IS RUNNINGGGGG!!!!!');
 
 module.exports = {
   add: add,

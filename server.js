@@ -4,8 +4,6 @@ var bodyParser = require('body-parser');
 
 var config = require('./config/config.json');
 
-app.use(bodyParser.json());
-
 app.use(express.static('public'));
 
 var router = express.Router();
@@ -19,33 +17,20 @@ app.get('/', function (req, res){
   res.render('index');
 });
 
-app.get('/add/:x/:y', function (req, res){
-    var x = parseInt(req.params.x);
-    var y = parseInt(req.params.y);
-    var result = calculator.add(x, y);
-    res.json(result);
+app.get('/add/:x', function (req, res){
+  res.redirect(422, '/');
 });
 
+app.get('/:math/:x/:y', function (req, res){
+  var x = parseInt(req.params.x);
+  var y = parseInt(req.params.y);
+  var math = req.params.math;
 
-app.get('/subtract/:x/:y', function (req, res){
-    var x = parseInt(req.params.x);
-    var y = parseInt(req.params.y);
-    var result = calculator.subtract(x, y);
-    res.json(result);
-});
+  if(math === "add"){res.json(calculator.add(x,y));}
+  if(math === "subtract"){res.json(calculator.subtract(x,y));}
+  if(math === "multiply"){res.json(calculator.multiply(x,y));}
+  if(math === "divide"){res.json(calculator.divide(x,y));}
 
-app.get('/multiply/:x/:y', function (req, res){
-    var x = parseInt(req.params.x);
-    var y = parseInt(req.params.y);
-    var result = calculator.multiply(x, y);
-    res.json(result);
-});
-
-app.get('/divide/:x/:y', function (req, res){
-    var x = parseInt(req.params.x);
-    var y = parseInt(req.params.y);
-    var result = calculator.divide(x, y);
-    res.json(result);
 });
 
 var server = app.listen(3000, function(){
