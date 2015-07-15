@@ -17,8 +17,9 @@ app.get('/', function (req, res){
   res.render('index');
 });
 
-app.get('/add/:x', function (req, res){
-  res.redirect(422, '/');
+app.get('/:math/:x', function (req, res){
+  var math = req.params.math;
+  res.send('422 Client Error. Please input two numbers');
 });
 
 app.get('/:math/:x/:y', function (req, res){
