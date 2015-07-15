@@ -24,13 +24,29 @@ app.get('/add/:x/:y', function (req, res){
     var y = parseInt(req.params.y);
     var result = calculator.add(x, y);
     res.json(result);
-  });
-
-
-app.get('/subtract', function (req, res){
-  res.send('Subtract some stuff');
 });
 
+
+app.get('/subtract/:x/:y', function (req, res){
+    var x = parseInt(req.params.x);
+    var y = parseInt(req.params.y);
+    var result = calculator.subtract(x, y);
+    res.json(result);
+});
+
+app.get('/multiply/:x/:y', function (req, res){
+    var x = parseInt(req.params.x);
+    var y = parseInt(req.params.y);
+    var result = calculator.multiply(x, y);
+    res.json(result);
+});
+
+app.get('/divide/:x/:y', function (req, res){
+    var x = parseInt(req.params.x);
+    var y = parseInt(req.params.y);
+    var result = calculator.divide(x, y);
+    res.json(result);
+});
 
 var server = app.listen(3000, function(){
   var host = server.address().address;
